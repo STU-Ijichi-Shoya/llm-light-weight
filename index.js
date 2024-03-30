@@ -15,24 +15,45 @@
 // ---------------------------------------------------------------------------------------- //
 
 import {FilesetResolver, LlmInference} from 'https://cdn.jsdelivr.net/npm/@mediapipe/tasks-genai';
+import { marked } from "https://cdn.jsdelivr.net/npm/marked/lib/marked.esm.js";
 
 const input = document.getElementById('input');
-const output = document.getElementById('output');
+const output = ''
 const submit = document.getElementById('submit');
-
+const outputArea = document.getElementById('outputArea');
+const status = document.getElementById('status')
 const modelFileName = 'https://objectstorage.ap-osaka-1.oraclecloud.com/n/axzkxwozwemt/b/bucket-20240330-1634/o/Gemma2b-gpugemma-2b-it-gpu-int4.bin'; /* Update the file name */
+
+const markedOptions = {
+  highlight: (code, lang) => {
+      return (
+          '<code class="hljs">' + highlight.highlightAuto(code).value + '</code>'
+      );
+  }
+}
+
+const markedOptions = {
+  highlight: (code, lang) => {
+      return (
+          '<code class="hljs">' + highlight.highlightAuto(code).value + '</code>'
+      );
+  }
+}
 
 /**
  * Display newly generated partial results to the output text box.
  */
 function displayPartialResults(partialResults, complete) {
-  output.textContent += partialResults;
+  output += partialResults;
+
+  outputArea.innerHTML=marked.parse(output, markedOptions)
 
   if (complete) {
     if (!output.textContent) {
-      output.textContent = 'Result is empty';
+      output = 'Result is empty';
     }
     submit.disabled = false;
+    hljs.highlightAll();
   }
 }
 
@@ -51,6 +72,7 @@ async function runDemo() {
   };
 
   submit.value = 'Loading the model...'
+  status.textContent='model loading... wait about 10 min'
   LlmInference
       .createFromOptions(genaiFileset, {
         baseOptions: {modelAssetPath: modelFileName},
@@ -68,7 +90,8 @@ async function runDemo() {
       .then(llm => {
         llmInference = llm;
         submit.disabled = false;
-        submit.value = 'Get Response'
+        submit.value = 'Compute Response'
+        status.textContent=''
       })
       .catch(() => {
         alert('Failed to initialize the task.');
@@ -76,3 +99,4 @@ async function runDemo() {
 }
 
 runDemo();
+
