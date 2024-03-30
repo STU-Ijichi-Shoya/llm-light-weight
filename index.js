@@ -18,7 +18,7 @@ import {FilesetResolver, LlmInference} from 'https://cdn.jsdelivr.net/npm/@media
 import { marked } from "https://cdn.jsdelivr.net/npm/marked/lib/marked.esm.js";
 
 const input = document.getElementById('input');
-const output = ''
+let output = ''
 const submit = document.getElementById('submit');
 const outputArea = document.getElementById('outputArea');
 const status = document.getElementById('status')
