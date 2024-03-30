@@ -13,17 +13,49 @@ See the License for the specific language governing permissions and
 limitations under the License. -->
 
 <!doctype html>
-<html lang="en">
+<html lang="ja">
+
 <head>
-    <title>LLM Inference Web Demo</title>
+    <title>LLM Local Inference </title>
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.5.1/github-markdown-light.min.css"
+        integrity="sha512-Pmhg2i/F7+5+7SsdoUqKeH7UAZoVMYb1sxGOoJ0jWXAEHP0XV2H4CITyK267eHWp2jpj7rtqWNkmEOw1tNyYpg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/default.min.css">
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>    
+    <style>
+        .inputContainer{
+            border: 1px solid black;
+            width: fit-content;
+            height: fit-content;
+        }
+        textarea{
+            border: none;
+            border-bottom: 1px solid black;
+        }
+        .senderControll{
+            display: flex;
+            justify-content: right;
+        }
+    </style>
 </head>
+
 <body>
-    Input:<br />
-    <textarea id="input" style="height: 300px; width: 600px"></textarea><br />
-    <input type="button" id="submit" value="Get Response" disabled /><br />
-    <br />
-    Result:<br />
-    <textarea id="output" style="height: 300px; width: 600px"></textarea>
-    <script type="module" src="index.js"></script>
+    Input:
+    <div class="inputContainer">
+        <textarea id="input" style="height: 300px; width: 600px"></textarea><br />
+        <div class="senderControll">
+            <p id="status"></p>
+            <input type="button" id="submit" value="Compute Response" disabled /><br />
+        </div>
+    </div>
+    <div style="max-width: 50%;">
+        <p>Result:</p>
+        <div id="outputArea" class="balloon2-top markdown-body">
+        </div>
+        <script type="module" src="index.js"></script>
 </body>
+
 </html>
