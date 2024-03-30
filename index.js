@@ -20,7 +20,7 @@ const input = document.getElementById('input');
 const output = document.getElementById('output');
 const submit = document.getElementById('submit');
 
-const modelFileName = 'gemma-2b-it-gpu-int4.bin'; /* Update the file name */
+const modelFileName = 'https://objectstorage.ap-osaka-1.oraclecloud.com/n/axzkxwozwemt/b/bucket-20240330-1634/o/Gemma2b-gpugemma-2b-it-gpu-int4.bin'; /* Update the file name */
 
 /**
  * Display newly generated partial results to the output text box.
