@@ -43,7 +43,7 @@ function displayPartialResults(partialResults, complete) {
   outputArea.innerHTML=marked.parse(output, markedOptions)
 
   if (complete) {
-    if (!output.textContent) {
+    if (!output) {
       output = 'Result is empty';
     }
     submit.disabled = false;
@@ -60,7 +60,7 @@ async function runDemo() {
   let llmInference;
 
   submit.onclick = () => {
-    output.textContent = '';
+    output = '';
     submit.disabled = true;
     llmInference.generateResponse(input.value, displayPartialResults);
   };
